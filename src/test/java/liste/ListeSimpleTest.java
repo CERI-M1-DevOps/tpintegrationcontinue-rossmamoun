@@ -310,4 +310,15 @@ public class ListeSimpleTest {
         listeATester.modifieTous(1, 4); // Element 1 exists
         assertEquals(listeATester.toString(), "ListeSimple(Noeud(4), Noeud(2), Noeud(4))");
     }
+
+    @Test
+    public void supprimePremierElementNonExistant(){
+        listeATester.ajout(1);
+        listeATester.ajout(2);
+        listeATester.ajout(3);
+        listeATester.supprimePremier(4); // Element 4 does not exist
+        assertEquals(listeATester.toString(), "ListeSimple(Noeud(3), Noeud(2), Noeud(1))");
+    }
+
+    
 }
