@@ -255,4 +255,59 @@ public class ListeSimpleTest {
         System.out.println(listeATester);
         assertEquals(listeATester.toString(), "ListeSimple(Noeud(4), Noeud(2), Noeud(3), Noeud(1), Noeud(5))");
     }
+    @Test
+    public void echangerMemeNoeud() {
+        listeATester.ajout(1);
+        Noeud r1 = listeATester.tete;
+        listeATester.echanger(r1, r1);
+        assertEquals(listeATester.toString(), "ListeSimple(Noeud(1))");
+    }
+    @Test
+    public void echangerR2EstTete() {
+        listeATester.ajout(5);
+        listeATester.ajout(4);
+        listeATester.ajout(3);
+        Noeud r2 = listeATester.tete;
+        listeATester.ajout(2);
+        listeATester.ajout(1);
+        Noeud r1 = listeATester.tete.getSuivant();
+        assertEquals(listeATester.toString(), "ListeSimple(Noeud(1), Noeud(2), Noeud(3), Noeud(4), Noeud(5))");
+        listeATester.echanger(r1, r2);
+        assertEquals(listeATester.toString(), "ListeSimple(Noeud(1), Noeud(3), Noeud(2), Noeud(4), Noeud(5))");
+    }
+    @Test
+    public void modifiePremierElementNonExistant() {
+        listeATester.ajout(1);
+        listeATester.ajout(2);
+        listeATester.ajout(3);
+        listeATester.modifiePremier(4, 5); // Element 4 does not exist
+        assertEquals(listeATester.toString(), "ListeSimple(Noeud(3), Noeud(2), Noeud(1))");
+    }
+
+    @Test
+    public void modifiePremierElementExistant() {
+        listeATester.ajout(1);
+        listeATester.ajout(2);
+        listeATester.ajout(3);
+        listeATester.modifiePremier(2, 4); // Element 2 exists
+        assertEquals(listeATester.toString(), "ListeSimple(Noeud(3), Noeud(4), Noeud(1))");
+    }
+
+    @Test
+    public void modifieTousElementNonExistant() {
+        listeATester.ajout(1);
+        listeATester.ajout(2);
+        listeATester.ajout(3);
+        listeATester.modifieTous(4, 5); // Element 4 does not exist
+        assertEquals(listeATester.toString(), "ListeSimple(Noeud(3), Noeud(2), Noeud(1))");
+    }
+
+    @Test
+    public void modifieTousElementExistant() {
+        listeATester.ajout(1);
+        listeATester.ajout(2);
+        listeATester.ajout(1);
+        listeATester.modifieTous(1, 4); // Element 1 exists
+        assertEquals(listeATester.toString(), "ListeSimple(Noeud(4), Noeud(2), Noeud(4))");
+    }
 }
